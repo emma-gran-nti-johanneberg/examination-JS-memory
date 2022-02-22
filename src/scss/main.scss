@@ -1,0 +1,33 @@
+
+*, html{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    main {
+        display: grid;
+        grid-template-columns: repeat(6, 150px);
+        gap: 1rem;
+    }
+
+    main article {
+        height: 150px;
+        background: rgb(48, 48, 48);
+    }
+
+
+    main article.neutral img{
+        opacity: 0;
+        width: 100%;
+    }
+
+    main article.flipped img {
+        opacity: 1;
+    }
+}
