@@ -14,6 +14,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 body main {
@@ -36,5 +40,13 @@ body main article.neutral img {
 
 body main article.flipped img {
   opacity: 1;
+}
+
+body main article.match {
+  background: #039903;
+}
+
+body main article.match {
+  opacity: .5;
 }
 /*# sourceMappingURL=main.css.map */

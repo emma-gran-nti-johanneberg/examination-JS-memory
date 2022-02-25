@@ -54,13 +54,25 @@ updateUI();
 
 let card1= null;
 let card2= null;
-let pair=null;
+let attempt=0;
+let score=0;
 
 
 function flippCard(card){
     card.classList.add("flipped")
 }
 
+function updateAttempt(points){
+    points+=1;
+    attempt=points;
+    document.querySelector('.attempt').innerText = `Antal försök: ${attempt}p`;
+}
+
+function updateScore(points){
+    points+=1;
+    score=points;
+    document.querySelector('.score').innerText = `Poäng: ${score}p`;
+}
 
 // Get clicked card ID
 let cards = document.querySelectorAll('article');
@@ -68,18 +80,25 @@ let cards = document.querySelectorAll('article');
 for(i=0; i<cards.length; i++){
 
     cards[i].addEventListener('click', (e) => {    
-    console.log(e.target.parentNode.getAttribute('data-id')); 
     
+    /* console log för att se vilket kort man har valt;
+    console.log(e.target.parentNode.getAttribute('data-id')); 
+    */    
     
         if (card1==null){
-            card1= e.target.parentNode.getAttribute(`data-id`)
+            card1 = e.target.parentNode.getAttribute(`data-id`)
+            flippCard(e.target.parentNode)
+
+            /*
+            console log för att se vadv som händer:
+
             console.log("nu är kort 1 vald")
             console.log(card1)
             console.log(card2)
-            flippCard(e.target.parentNode)
+            */
         }
 
-        else{
+        else {
             card2= e.target.parentNode.getAttribute(`data-id`)
             flippCard(e.target.parentNode)
             console.log("nu har du valt kort 2 och korten har siffrorna")
@@ -87,23 +106,40 @@ for(i=0; i<cards.length; i++){
             console.log(card2)
             
             if (card1==card2){
+                /*
+                console log för att se vadv som händer:
+
                 console.log(`du har hittat ett par korten har id:`)
                 console.log(card1)
                 console.log(card2)
+                */
+
                 document.querySelector(`[data-id="${card1}"]`).setAttribute("data-matched", true)
                 document.querySelector(`[data-id="${card2}"]`).setAttribute("data-matched", true)
+                document.querySelector(`[data-id="${card1}"]`).classList.add("match")
+                document.querySelector(`[data-id="${card2}"]`).classList.add("match")
                 card1 = null
                 card2 = null
-
+                updateAttempt(attempt)
+                updateScore(score)
             }
             else {
                 document.querySelector(`[data-id="${card1}"]`).classList.remove("flipped")
                 document.querySelector(`[data-id="${card2}"]`).classList.remove("flipped")
+                document.querySelector(`[data-id="${card1}"]`).classList.add("neutral")
+                document.querySelector(`[data-id="${card2}"]`).classList.add("neutral")
+
+                /*
+                console log för att se vadv som händer: 
+
                 console.log('detta är inget par och nu har kort ett siffrorna:')
                 console.log(card1)
                 console.log(card2)
+                */
+
                 card1 = null
                 card2 = null
+                updateAttempt(attempt)
             }
         }
 
