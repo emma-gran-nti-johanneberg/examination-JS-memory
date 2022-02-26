@@ -15,10 +15,19 @@ function generateDeck(){
         deck.push(card) // card B
 
     }
-
     return deck;
-
 }
+
+/*Funktion för att blanda kortleken*/
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
 
 function updateUI(){
 
@@ -49,6 +58,7 @@ function updateUI(){
 
 
 let deck = generateDeck();
+let new_deck = shuffleArray(deck);
 console.log(deck);
 updateUI();
 
@@ -114,31 +124,32 @@ for(i=0; i<cards.length; i++){
                 console.log(card2)
                 */
 
-                document.querySelector(`[data-id="${card1}"]`).setAttribute("data-matched", true)
-                document.querySelector(`[data-id="${card2}"]`).setAttribute("data-matched", true)
-                document.querySelector(`[data-id="${card1}"]`).classList.add("match")
-                document.querySelector(`[data-id="${card2}"]`).classList.add("match")
+                document.querySelector(`[data-id="${card1}"]`).setAttribute("data-matched", true);
+                document.querySelector(`[data-id="${card2}"]`).setAttribute("data-matched", true);
+                document.querySelector(`[data-id="${card1}"]`).classList.add("match");
+                document.querySelector(`[data-id="${card2}"]`).classList.add("match");
                 card1 = null
                 card2 = null
                 updateAttempt(attempt)
                 updateScore(score)
             }
+
             else {
-                document.querySelector(`[data-id="${card1}"]`).classList.remove("flipped")
-                document.querySelector(`[data-id="${card2}"]`).classList.remove("flipped")
-                document.querySelector(`[data-id="${card1}"]`).classList.add("neutral")
-                document.querySelector(`[data-id="${card2}"]`).classList.add("neutral")
+                document.querySelector(`[data-id="${card1}"]`).classList.remove("flipped");
+                document.querySelector(`[data-id="${card2}"]`).classList.remove("flipped");
+                document.querySelector(`[data-id="${card1}"]`).classList.add("neutral");
+                document.querySelector(`[data-id="${card2}"]`).classList.add("neutral");
 
                 /*
-                console log för att se vadv som händer: 
+                console log för att se vad som händer: 
 
                 console.log('detta är inget par och nu har kort ett siffrorna:')
                 console.log(card1)
                 console.log(card2)
                 */
 
-                card1 = null
-                card2 = null
+                card1 = null;
+                card2 = null;
                 updateAttempt(attempt)
             }
         }
